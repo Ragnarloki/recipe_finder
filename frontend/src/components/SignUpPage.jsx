@@ -27,9 +27,10 @@ const SignUpPage = () => {
         password: '',
       });
       window.location.href = '/food_recipe_finder/login';
-   
+      
     } catch (err) {
       // Handle error
+      console.log(err)
       setError('Error creating account. Please try again.');
     }
   };
