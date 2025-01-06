@@ -14,10 +14,13 @@ require('dotenv').config(); // Load environment variables
 const mongoUrl = process.env.mongoUrl;
 
 // Connect to MongoDB
-mongoose
-  .connect(mongoUrl)
-  
 
+  mongoose.connect(mongoUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('Database connected'))
+  .catch((err) => console.error('Database connection error:', err));
 // Signup Route
 app.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
