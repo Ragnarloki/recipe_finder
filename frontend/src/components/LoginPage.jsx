@@ -21,7 +21,7 @@ const LoginPage = () => {
     setError(''); // Clear any previous errors
   
     try {
-      const response = await axios.post(`${REACT_BACKEND_URL}/login`, formData);
+      const response = await axios.post(`${process.env.REACT_BACKEND_URL}/login`, formData);
   
       setLoading(false); // Stop loading
   
@@ -34,7 +34,7 @@ const LoginPage = () => {
       window.location.href = '/food_recipe_finder/';
     } catch (err) {
       setLoading(false);
-  
+      console.log(err);
       if (err.response && err.response.data.message) {
         setError(err.response.data.message);
       } else {
