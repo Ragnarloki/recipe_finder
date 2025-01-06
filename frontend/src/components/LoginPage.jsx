@@ -21,7 +21,7 @@ const LoginPage = () => {
     setError(''); // Clear any previous errors
   
     try {
-      const response = await axios.post('http://localhost:3000/login', formData);
+      const response = await axios.post(`${REACT_BACKEND_URL}/login`, formData);
   
       setLoading(false); // Stop loading
   

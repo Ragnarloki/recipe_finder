@@ -16,7 +16,7 @@ function Favorites() {
       }
 
       try {
-        const response = await axios.get(`http://localhost:3000/favorites/${username}`);
+        const response = await axios.get(`${REACT_BACKEND_URL}/favorites/${username}`);
         setFavorites(response.data);
       } catch (err) {
         console.error('Error fetching favorites:', err);
@@ -28,7 +28,7 @@ function Favorites() {
   }, []);
 
   const deleteItem = (id) => {
-    axios.delete(`http://localhost:3000/items/${id}`)
+    axios.delete(`${REACT_BACKEND_URL}items/${id}`)
       .then((response) => {
         // Remove the deleted item from the favorites state
         setFavorites(favorites.filter(item => item._id !== id));

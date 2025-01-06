@@ -15,10 +15,8 @@ const mongoUrl = process.env.mongoUrl;
 
 // Connect to MongoDB
 mongoose
-  .connect(mongoUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(mongoUrl)
+  
 
 // Signup Route
 app.post('/signup', async (req, res) => {

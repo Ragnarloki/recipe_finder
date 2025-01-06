@@ -34,7 +34,7 @@ function Home() {
     
     // If logged in, proceed to add to favorites
     axios
-      .post('http://localhost:3000/recipe', {username, id, thumbnail_url })
+      .post(`${REACT_BACKEND_URL}/recipe`, {username, id, thumbnail_url })
       .then((result) => {
         alert('Recipe added to favorites!');
       })
