@@ -30,7 +30,6 @@ function Favorites() {
   const deleteItem = (id) => {
     axios.delete(`http://localhost:3000/items/${id}`)
       .then((response) => {
-        console.log(response.data.message);
         // Remove the deleted item from the favorites state
         setFavorites(favorites.filter(item => item._id !== id));
       })

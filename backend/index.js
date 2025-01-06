@@ -10,15 +10,15 @@ const app = express();
 app.use(cors()); // Allow all origins, adjust for production
 app.use(express.json());
 app.use(bodyParser.json());
+require('dotenv').config(); // Load environment variables
+const mongoUrl = process.env.mongoUrl;
 
 // Connect to MongoDB
 mongoose
-  .connect('mongodb+srv://siva:siva1234@cluster0.kpwvu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+  .connect(mongoUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('Error connecting to MongoDB:', err));
 
 // Signup Route
 app.post('/signup', async (req, res) => {
@@ -131,5 +131,5 @@ app.delete('/items/:id', async (req, res) => {
 
 // Start Server
 app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+  console.log('Server is running');
 });

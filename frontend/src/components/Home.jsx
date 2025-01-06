@@ -36,7 +36,6 @@ function Home() {
     axios
       .post('http://localhost:3000/recipe', {username, id, thumbnail_url })
       .then((result) => {
-        console.log('Result:', result.data);
         alert('Recipe added to favorites!');
       })
       .catch((err) => console.error('Error:', err));

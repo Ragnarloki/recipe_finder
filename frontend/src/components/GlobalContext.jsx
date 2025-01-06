@@ -45,11 +45,9 @@ export default function Globalstate({children}){
                 setLoading(false)
                 setParam('')
             } 
-            console.log(data.results);
         }
             
         catch(e){
-            console.log(e)
             setLoading(false)
             setParam('')
         }

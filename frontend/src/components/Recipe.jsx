@@ -8,7 +8,6 @@ function Recipe() {
   const {recipeDetail,setRecipeDetail} =useContext(GlobalContext)
   const {loading,setLoading}=useContext(GlobalContext)
   const [video,setvideo]= useState([])
-  console.log(id)
   useEffect(()=>{
     async function getDetails(){
       const response =await fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${id}`,{
@@ -22,9 +21,7 @@ function Recipe() {
       setvideo(data.renditions[0].url)
       setRecipeDetail(data)
       
-      console.log(data);
       setLoading(false)
-      console.log(data);
     }getDetails()
   },[])
   
