@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { IdModel, User } = require('./models/users'); // Ensure correct path
+const { IdModel, User } = require('../models/users'); // Ensure correct path
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
