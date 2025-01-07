@@ -8,6 +8,8 @@ import Globalstate from './components/GlobalContext'
 import LoginPage from './components/LoginPage'
 import SignUpPage from './components/SignUpPage'
 import { AuthProvider } from './components/AuthContext'
+// In a component or main app file (e.g., App.js)
+import './assets/index-zaZ9pE40.css';
 
 function App() {
   return (
