@@ -6,6 +6,12 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const app = express();
+const mime = require('mime');
+const path = require('path');
+
+mime.define({ 'text/css': ['css'] }); 
+app.use(express.static(path.join(__dirname, 'build')));
+
 
 app.use(cors());
 app.use(express.json());
