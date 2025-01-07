@@ -7,7 +7,7 @@ function Navbar() {
 
   return (
     <div className='bar'>
-      <Link to={'/food_recipe_finder/'} className='bar_h1'>
+      <Link to={'/'} className='bar_h1'>
         <h3>HOME</h3>
       </Link>
 

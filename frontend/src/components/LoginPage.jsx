@@ -30,7 +30,7 @@ const LoginPage = () => {
   
       alert('Login successful!');
       // Redirect to the dashboard or another page
-      window.location.href = '/food_recipe_finder/';
+      window.location.href = '/';
     } catch (err) {
       setLoading(false);
       console.log(err);
