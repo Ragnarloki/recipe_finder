@@ -8,9 +8,7 @@ import Globalstate from './components/GlobalContext'
 import LoginPage from './components/LoginPage'
 import SignUpPage from './components/SignUpPage'
 import { AuthProvider } from './components/AuthContext'
-// In a component or main app file (e.g., App.js)
-import '../public/assets/index-zaZ9pE40.css'
-// src/index.js or src/App.js
+// In a component or main app
 import 'bootstrap/dist/css/bootstrap.min.css';  // Example for importing Bootstrap
 import './index.css'; // Import your custom styles
 
