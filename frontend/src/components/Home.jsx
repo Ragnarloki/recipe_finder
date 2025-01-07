@@ -17,13 +17,10 @@ function Home() {
   }
 
   // Function to add recipe to favorites with ID and thumbnail
-  const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = (id, thumbnail_url) => {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
-    setIsClicked(true);
-    console.log("isClicked");
   
     if (!token) {
       // If user is not logged in, redirect to login page
@@ -34,7 +31,7 @@ function Home() {
     
     // If logged in, proceed to add to favorites
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/recipe`, {username, id, thumbnail_url })
+      .post(`${import.meta.env.VITE_BACKEND_URL}/recipe`, {username, id, thumbnail_url })
       .then((result) => {
         alert('Recipe added to favorites!');
       })
@@ -57,7 +54,7 @@ function Home() {
             height={300}
             autoFocus
           />
-          <button type="submit" className="button" disabled={isClicked} >
+          <button type="submit" className="button"  >
             Submit
           </button>
         </form>

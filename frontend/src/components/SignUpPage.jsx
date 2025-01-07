@@ -19,7 +19,7 @@ const SignUpPage = () => {
 
     try {
       // Send the signup data to the backend
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/signup`, formData);
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/signup`, formData);
       alert(response.data); // You can modify how you handle success (e.g., redirect to login)
       setFormData({
         username:'',

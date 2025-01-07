@@ -21,7 +21,7 @@ const LoginPage = () => {
     setError(''); // Clear any previous errors
   
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, formData);
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, formData);
   
       setLoading(false); // Stop loading
   

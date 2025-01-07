@@ -16,7 +16,7 @@ function Favorites() {
       }
 
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/favorites/${username}`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/favorites/${username}`);
         setFavorites(response.data);
       } catch (err) {
         console.error('Error fetching favorites:', err);
@@ -28,7 +28,7 @@ function Favorites() {
   }, []);
 
   const deleteItem = (id) => {
-    axios.delete(`${process.env.REACT_APP_BACKEND_URL}items/${id}`)
+    axios.delete(`${process.env.VITE_BACKEND_URL}items/${id}`)
       .then((response) => {
         // Remove the deleted item from the favorites state
         setFavorites(favorites.filter(item => item._id !== id));
