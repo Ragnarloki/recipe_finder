@@ -18,7 +18,7 @@ function Home() {
 
   // Function to add recipe to favorites with ID and thumbnail
 
-  const handleClick = (id, thumbnail_url) => {
+  const handleClick = (product, thumbnail_url) => {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
   
@@ -31,7 +31,7 @@ function Home() {
     
     // If logged in, proceed to add to favorites
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/recipe`, {username, id, thumbnail_url })
+      .post(`${import.meta.env.VITE_BACKEND_URL}/recipe`, {username, product, thumbnail_url })
       .then((result) => {
         alert('Recipe added to favorites!');
       })

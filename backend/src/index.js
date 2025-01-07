@@ -91,17 +91,17 @@ app.get('/favorites/:username', async (req, res) => {
 
 // Add Recipe to Favorites
 app.post('/recipe', async (req, res) => {
-  const { username,id, thumbnail_url } = req.body;
+  const { username,product, thumbnail_url } = req.body;
 
   try {
-    const existingFavorite = await IdModel.findOne({ recipeId: id });
+    const existingFavorite = await IdModel.findOne({ recipeId: product });
     if (existingFavorite) {
       return res.status(400).json({ message: 'Recipe is already in favorites!' });
     }
 
     const favorite = new IdModel({
       username:username,
-      recipeId: id,
+      recipeId: product,
       thumbnail: thumbnail_url,
     });
 
