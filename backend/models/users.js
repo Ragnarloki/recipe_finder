@@ -1,11 +1,18 @@
 const mongoose = require('mongoose');
 
 const IdSchema = new mongoose.Schema({
-    product: String,
-    thumbnail: String,
-    username:String
-});
-
+    thumbnail: { type: String },
+    product: { 
+      type: Number, 
+      required: true, 
+      validate: {
+        validator: Number.isInteger,
+        message: '{VALUE} is not an integer'
+      }
+    },
+    username: { type: String },
+  });
+  
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },

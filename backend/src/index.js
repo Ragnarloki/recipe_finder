@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const app = express();
 
-app.use(cors()); // Allow all origins, adjust for production
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 require('dotenv').config(); // Load environment variables
@@ -91,20 +91,23 @@ app.get('/favorites/:username', async (req, res) => {
 
 // Add Recipe to Favorites
 app.post('/recipe', async (req, res) => {
-  const { username,product, thumbnail_url } = req.body;
+  const { username, product, thumbnail_url } = req.body;
 
   try {
-    const existingFavorite = await IdModel.findOne({ recipeId: product });
+    // Check if the recipe is already in the favorites
+    const existingFavorite = await IdModel.findOne({ product: product });
     if (existingFavorite) {
       return res.status(400).json({ message: 'Recipe is already in favorites!' });
     }
 
+    // Create a new favorite recipe entry
     const favorite = new IdModel({
-      username:username,
-      recipeId: product,
-      thumbnail: thumbnail_url,
+      username: username,
+      product: product,  // Ensure it matches the field in the schema
+      thumbnail: thumbnail_url,  // Ensure this is the correct field from frontend
     });
 
+    // Save the new favorite to the database
     await favorite.save();
     res.status(201).json({ message: 'Recipe added to favorites!' });
   } catch (error) {
@@ -112,7 +115,6 @@ app.post('/recipe', async (req, res) => {
     res.status(500).json({ message: 'Failed to add recipe to favorites.' });
   }
 });
-
 // Delete Item
 app.delete('/items/:id', async (req, res) => {
   const { id } = req.params;

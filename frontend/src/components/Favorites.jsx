@@ -55,7 +55,7 @@ function Favorites() {
                 {item.name}
               </p>
               <div className='d-flex justify-content-center'>
-                <Link to={`/food_recipe_finder/recipe/${item._id}`}>
+                <Link to={`/food_recipe_finder/recipe/${item.product}`}>
                   <button style={{ marginLeft: '4px' }} className="btn btn-primary">
                     Recipe Details
                   </button>

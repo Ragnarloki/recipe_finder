@@ -1,15 +1,20 @@
 import React, { useContext, useState } from 'react';
-import '.././App.css';
+import '../App.css';
 import { GlobalContext } from './GlobalContext';
-import { Link, useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify'; // Import react-toastify
+import 'react-toastify/dist/ReactToastify.css'; // Import the default styles for the toast notifications
 
 function Home() {
   const { id } = useParams();
-  const { searchParam, setParam, submitHandler, isLoggedIn } = useContext(GlobalContext); // Include isLoggedIn from context
+  const { searchParam, setParam, submitHandler, isLoggedIn } = useContext(GlobalContext);
   const { recipeList } = useContext(GlobalContext);
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
+  
+  // State to manage loading status
+  const [loading, setLoading] = useState(false);
 
   // Handler for input change
   function onchangeHandler(e) {
@@ -17,25 +22,32 @@ function Home() {
   }
 
   // Function to add recipe to favorites with ID and thumbnail
-
-  const handleClick = (product, thumbnail_url) => {
+  const handleClick = (thumbnail_url, product) => {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
-  
+
     if (!token) {
       // If user is not logged in, redirect to login page
-      alert('Please login to add to favorites!');
+      toast.error('Please login to add to favorites!'); // Use toast instead of alert
       navigate('/food_recipe_finder/login'); // Redirect to login page
       return;
     }
     
+    setLoading(true); // Set loading to true while request is in progress
+
     // If logged in, proceed to add to favorites
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/recipe`, {username, product, thumbnail_url })
+      .post(`${import.meta.env.VITE_BACKEND_URL}/recipe`, { username, product, thumbnail_url })
       .then((result) => {
-        alert('Recipe added to favorites!');
+        toast.success('Recipe added to favorites!'); // Show success toast
       })
-      .catch((err) => console.error('Error:', err));
+      .catch((err) => {
+        console.error('Error:', err);
+        toast.error('Failed to add recipe to favorites! or it already in the favorites'); // Show error toast
+      })
+      .finally(() => {
+        setLoading(false); // Set loading to false when the request is completed
+      });
   };
 
   return (
@@ -54,7 +66,7 @@ function Home() {
             height={300}
             autoFocus
           />
-          <button type="submit" className="button"  >
+          <button type="submit" className="button">
             Submit
           </button>
         </form>
@@ -81,26 +93,27 @@ function Home() {
                   {item.name}
                 </p>
                 <Link to={`/food_recipe_finder/recipe/${item.id}`}>
-                  <button
-                    style={{ marginLeft: '4px' }}
-                    className="btn btn-primary"
-                  >
+                  <button style={{ marginLeft: '4px' }} className="btn btn-primary">
                     Recipe Details
                   </button>
                 </Link>
 
                 <button
-                  onClick={() => handleClick(item.id, item.thumbnail_url)} // Pass both id and thumbnail_url
+                  onClick={() => handleClick(item.thumbnail_url, item.id)} // Pass both id and thumbnail_url
                   style={{ marginLeft: '4px' }}
                   className="btn btn-primary"
+                  disabled={loading} // Disable button while the request is in progress
                 >
-                  Add to Favorite
+                  {loading ? 'Adding to Favorites...' : 'Add to Favorite'}
                 </button>
               </div>
             ))}
           </div>
         ) : null}
       </div>
+
+      {/* Toast Container for notifications */}
+      <ToastContainer />
     </div>
   );
 }
