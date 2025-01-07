@@ -10,6 +10,8 @@ import SignUpPage from './components/SignUpPage'
 import { AuthProvider } from './components/AuthContext'
 // In a component or main app file (e.g., App.js)
 import './assets/index-zaZ9pE40.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
