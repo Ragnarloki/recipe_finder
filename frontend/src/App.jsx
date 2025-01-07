@@ -9,8 +9,10 @@ import LoginPage from './components/LoginPage'
 import SignUpPage from './components/SignUpPage'
 import { AuthProvider } from './components/AuthContext'
 // In a component or main app file (e.g., App.js)
-import './assets/index-zaZ9pE40.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '../public/assets/index-zaZ9pE40.css'
+// src/index.js or src/App.js
+import 'bootstrap/dist/css/bootstrap.min.css';  // Example for importing Bootstrap
+import './index.css'; // Import your custom styles
 
 
 function App() {
