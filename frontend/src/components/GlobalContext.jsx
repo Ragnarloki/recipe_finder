@@ -38,13 +38,14 @@ export default function Globalstate({children}){
 		        'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
               }
             })
-             
+            
             const data=await res.json();
             if(data.results){
                 setRecipeList(data.results)
                 setLoading(false)
                 setParam('')
-            } 
+            }
+            
         }
             
         catch(e){
