@@ -1,0 +1,44 @@
+/* Button Styling */
+.arrow-btn {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: none;
+    font-size: 1.4rem;
+    color: white;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .arrow-btn:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+  }
+  
+  .arrow-btn:focus {
+    outline: none;
+  }
+  
+  /* Hide Scrollbar */
+  #scrollable-container {
+    scrollbar-width: none; 
+    scrollbar-face-color: aqua;/* Firefox */
+  }
+  
+  #scrollable-container::-webkit-scrollbar {
+    display: hidden; /* Chrome, Edge, Safari */
+  }
+  .card-title {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%; /* Ensures the text is constrained within the container */
+  }
+  
+  #scrollable-container-Pizza, 
+#scrollable-container-Burger, 
+#scrollable-container-Sandwich {
+  overflow-x: hidden;
+  -ms-overflow-style: none; /* Hide scrollbars in IE */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}

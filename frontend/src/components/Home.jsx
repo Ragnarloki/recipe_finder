@@ -8,8 +8,7 @@ import { ToastContainer, toast } from 'react-toastify'; // Import react-toastify
 import 'react-toastify/dist/ReactToastify.css'; // Import the default styles for the toast notifications
 import { Button, Carousel } from 'react-bootstrap';
 import Fooddata from '../data.json'; // Import the JSON file directly
-
-
+import FestivalsCarousel from './FestivalCarousel';
 // const DataFetcher = () => {
 //   // State to store the data and loading state
 //   const [data, setData] = useState(null);
@@ -60,33 +59,33 @@ import Fooddata from '../data.json'; // Import the JSON file directly
 //   );
 // };
 
-// const SaveJsonButton = () => {
-//   const { recipeList } = useContext(GlobalContext);
+const SaveJsonButton = () => {
+  const { recipeList } = useContext(GlobalContext);
 
-//   const handleSaveJson = () => {
-//     // Step 1: Convert JSON object to a string
-//     const jsonString = JSON.stringify(recipeList, null, 2); // The second parameter here adds indentation
+  const handleSaveJson = () => {
+    // Step 1: Convert JSON object to a string
+    const jsonString = JSON.stringify(recipeList, null, 2); // The second parameter here adds indentation
 
-//     // Step 2: Create a Blob object with the JSON data
-//     const blob = new Blob([jsonString], { type: 'application/json' });
+    // Step 2: Create a Blob object with the JSON data
+    const blob = new Blob([jsonString], { type: 'application/json' });
 
-//     // Step 3: Create a temporary download link and trigger it
-//     const url = URL.createObjectURL(blob);
-//     const link = document.createElement('a');
-//     link.href = url;
-//     link.download = 'data.json'; // Name of the file being downloaded
-//     link.click();
+    // Step 3: Create a temporary download link and trigger it
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'data.json'; // Name of the file being downloaded
+    link.click();
 
-//     // Clean up the URL object after the download
-//     URL.revokeObjectURL(url);
-//   };
+    // Clean up the URL object after the download
+    URL.revokeObjectURL(url);
+  };
 
-//   return (
-//     <button onClick={handleSaveJson}>
-//       Save JSON as File
-//     </button>
-//   );
-// };
+  return (
+    <button onClick={handleSaveJson}>
+      Save JSON as File
+    </button>
+  );
+};
 
 
 const FoodSlideshow = () => {
@@ -263,6 +262,7 @@ function Home() {
         </form>
       </center>
       <div>
+        {/* <SaveJsonButton /> */}
         {recipeList && recipeList.length > 0 ? (
           <div className="car">
             {recipeList.map((item, index) => (
@@ -304,6 +304,7 @@ function Home() {
       <FoodSlideshow />
       {/* Toast Container for notifications */}
       <ToastContainer />
+      <FestivalsCarousel />
     </div>
   );
 }
