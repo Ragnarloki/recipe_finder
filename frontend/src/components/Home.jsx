@@ -214,32 +214,49 @@ function Home() {
   // Function to add recipe to favorites with ID and thumbnail
   const handleClick = (thumbnail_url, product) => {
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
+    // Example of storing token with expiration
+    const tokenExpiration = localStorage.getItem('tokenExpiration');
+    console.log(tokenExpiration)
+    if (token && tokenExpiration) {
+      const currentTime = new Date().getTime();
 
-    if (!token) {
-      // If user is not logged in, redirect to login page
-      toast.error('Please login to add to favorites!'); // Use toast instead of alert
-      navigate('/food_recipe_finder/login'); // Redirect to login page
-      return;
+      // Check if the token has expired
+      if (currentTime > tokenExpiration) {
+        // Token has expired, so remove it and notify the user
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        localStorage.removeItem('tokenExpiration');
+        toast.error('Your session has expired, please log in again.');
+        navigate('/food_recipe_finder/login');
+        return;
+      }
     }
     
-    setLoading(true); // Set loading to true while request is in progress
-
+    if (!token) {
+      // If user is not logged in or token has expired, redirect to login page
+      toast.error('Please login to add to favorites!');
+      navigate('/food_recipe_finder/login');
+      return;
+    }
+  
+    const username = localStorage.getItem('username');
+    setLoading(true);
+  
     // If logged in, proceed to add to favorites
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/recipe`, { username, product, thumbnail_url })
       .then((result) => {
-        toast.success('Recipe added to favorites!'); // Show success toast
+        toast.success('Recipe added to favorites!');
       })
       .catch((err) => {
         console.error('Error:', err);
-        toast.error('Failed to add recipe to favorites! or it already in the favorites'); // Show error toast
+        toast.error('Failed to add recipe to favorites! or it already in the favorites');
       })
       .finally(() => {
-        setLoading(false); // Set loading to false when the request is completed
+        setLoading(false);
       });
   };
-
+  
   return (
     <div>
       <center>

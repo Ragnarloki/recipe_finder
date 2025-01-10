@@ -24,10 +24,13 @@ const LoginPage = () => {
   
       setLoading(false); // Stop loading
   
+      const expirationTime = new Date().getTime() + 3600000; // 5000 ms = 5 seconds
+
       // Save token and user details to localStorage
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('username', response.data.username); // Save the username in localStorage
-  
+      localStorage.setItem('tokenExpiration', expirationTime);  // Store the expiration time
+      
       alert('Login successful!');
       // Redirect to the dashboard or another page
       window.location.href = '/';
