@@ -133,7 +133,7 @@ const FoodSlideshow = () => {
     <div className="container my-4">
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h5 className="font-weight-bold">Must Try Recipes</h5>
+        <h5 className="font-weight-bold  ">Must Try Recipes</h5>
         <Button variant="outline-dark" size="sm" onClick={handleViewAllToggle}>
           {isViewAll ? "VIEW LESS" : "VIEW ALL"}
         </Button>
@@ -167,27 +167,6 @@ const FoodSlideshow = () => {
         ))}
       </div>
 
-      {/* Navigation Buttons */}
-      {!isViewAll && (
-        <div className="d-flex justify-content-between mt-3">
-          <Button
-            variant="outline-dark"
-            size="sm"
-            disabled={currentIndex === 0}
-            onClick={handlePrev}
-          >
-            <i className="bi bi-chevron-left"></i> Previous
-          </Button>
-          <Button
-            variant="outline-dark"
-            size="sm"
-            disabled={currentIndex + itemsPerPage >= data.length}
-            onClick={handleNext}
-          >
-            Next <i className="bi bi-chevron-right"></i>
-          </Button>
-        </div>
-      )}
     </div>
   );
 };

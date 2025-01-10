@@ -24,7 +24,7 @@ const Carousel = ({ title, data }) => {
   return (
     <div
       className="container py-3 bg-dark text-white position-relative"
-      style={{ borderRadius: "10px", overflow: "hidden", marginBottom: "50px" }}
+      style={{ borderRadius: "10px", overflow: "hidden", marginBottom: "50px"}}
     >
       {/* Section Heading */}
       <div className="d-flex justify-content-between align-items-center mb-3">
